@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sample Dashboard - Acceso</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  body { font-family: -apple-system, Helvetica, Arial, sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; background:#f7f7f8; }
+  .box { background:#fff; padding:32px 40px; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.08); text-align:center; }
+  input { padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; width:220px; }
+  button { padding:10px 16px; border:none; background:#111; color:#fff; border-radius:8px; margin-left:8px; cursor:pointer; }
+  h2 { margin-top:0; font-size:18px; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <h2>Sample Dashboard</h2>
+    <input id="pw" type="password" placeholder="Contraseña" onkeydown="if(event.key==='Enter') check()">
+    <button onclick="check()">Entrar</button>
+  </div>
+  <script>
+    const STORAGE_KEY = 'wd_auth_example_sample';
+    const PASSWORD = 'CAMBIAR_ESTA_PASSWORD';
+    if (sessionStorage.getItem(STORAGE_KEY) === 'ok') {
+      window.location.href = 'dashboard.html';
+    }
+    function check() {
+      const val = document.getElementById('pw').value;
+      if (val === PASSWORD) {
+        sessionStorage.setItem(STORAGE_KEY, 'ok');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Contraseña incorrecta');
+      }
+    }
+  </script>
+</body>
+</html>
